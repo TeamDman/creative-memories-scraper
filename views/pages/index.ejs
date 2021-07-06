@@ -1,7 +1,18 @@
 <html>
+    <head>
+        <script>
+            function updateSlider(x) {
+                document.getElementById("labDelay").textContent = `Delay: ${x}ms`;
+            }
+        </script>
+    </head>
     <body>
         <form method="POST" action="/submit" name="submitttt">
-            <textarea id="urls" name="urls" placeholder="Page URLs"></textarea>
+            <input onload="updateSlider(this.value)" onchange="updateSlider(this.value)" type="range" min="50" max="5000" value="500" id="delay"/>
+            <label id="labDelay" for="delay">Delay: 500ms</label>
+            <br/>
+            <!-- <textarea id="urls" name="urls" placeholder="Page URLs"></textarea> -->
+            <br/>
             <button type="submit">Submit</button>
         </form> 
         <a href="/download">Download zip from last time</a>

@@ -1,0 +1,29 @@
+<html>
+<header>
+    <script>
+        document.addEventListener("DOMContentLoaded", ()=>{
+            const prog = document.querySelector("#prog");
+            const ivl = setInterval(async ()=>{
+                const resp = await fetch("/progress?raw=1");
+                const x = await resp.text();
+                prog.value = x;
+                if (x == 100) {
+                    clearInterval(ivl);
+                    alert("Download ready!");
+                    document.getElementById("download").textContent="Download new zip";
+                }
+            }, 2000);
+        });
+    </script>
+</header>
+<body>
+    <p>Downloading content</p>
+    <br/>
+    <progress id="prog" value="<%= progress %>" max="100"></progress>
+    <br/>
+    <a id="download" href="/download">Download old zip</a>
+    <br/>
+    <a href="/">Back home</a>
+</body>
+
+</html>

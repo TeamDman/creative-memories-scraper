@@ -116,8 +116,9 @@ async function gatherImages(pageURL) {
     for (const link of issuuLinks) {
         infoText += link + "\n";
     }
-
-    fs.writeFileSync(path.join(config.outputPath, prefix + sectionName + "-info.txt"), infoText);
+    if (videoUrls.length + issuuLinks.length > 0) {
+        fs.writeFileSync(path.join(config.outputPath, prefix + sectionName + "-info.txt"), infoText);
+    }
 
     await Promise.all(jobs);
 }
